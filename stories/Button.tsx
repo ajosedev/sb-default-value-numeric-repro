@@ -1,48 +1,22 @@
-import React from 'react';
-import './button.css';
+import React from "react";
+import "./button.css";
 
 interface ButtonProps {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary?: boolean;
-  /**
-   * What background color to use
-   */
-  backgroundColor?: string;
-  /**
-   * How large should the button be?
-   */
-  size?: 'small' | 'medium' | 'large';
-  /**
-   * Button contents
-   */
-  label: string;
-  /**
-   * Optional click handler
-   */
-  onClick?: () => void;
+  sizeAsNumber: 1 | 2 | 3;
+  sizeAsNumberUsedAsString: 1 | 2 | 3;
 }
 
-/**
- * Primary UI component for user interaction
- */
-export const Button = ({
-  primary = false,
-  size = 'medium',
-  backgroundColor,
-  label,
-  ...props
-}: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+export const Button = (props: ButtonProps) => {
+  console.log(props);
+
   return (
-    <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
-      {...props}
-    >
-      {label}
-    </button>
+    <div>
+      <p>
+        Refresh this page, and compare the props rendered here against the props
+        rendered when switching to the other story.
+      </p>
+      <p>Both stories are the same, it does not matter which you start on</p>
+      <p>{JSON.stringify(props, null, 2)}</p>
+    </div>
   );
 };
